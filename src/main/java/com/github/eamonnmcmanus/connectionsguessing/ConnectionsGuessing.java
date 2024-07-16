@@ -365,6 +365,7 @@ public record ConnectionsGuessing(boolean showNonUniverseBetter, boolean onlyGue
 
     @Override
     public boolean remove(Object o) {
+      checkState(!frozen);
       if (o instanceof Connection connection && connectionBits.get(connection.index())) {
         connectionBits.clear(connection.index());
         return true;
