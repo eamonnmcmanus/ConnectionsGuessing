@@ -10,12 +10,11 @@ the connection is that they are changes from one state of matter to another. (Th
 inspired by the Connecting Wall from the [Only Connect](https://en.wikipedia.org/wiki/Only_Connect)
 quiz show on the BBC.)
 
-You are allowed 3 incorrect guesses, but at the 4th incorrect guess you lose.  After each
+You are allowed 3 incorrect guesses, but at the 4th incorrect guess you lose. After each
 guess, the game will tell you if the guess is correct, and it will also say "one away" if 3 of
 the items are part of a connection but the other is not. It won't tell you which is the odd one
-out, though. If it says neither "correct" nor "one away" then you must have 2 items from one of
-the connections and 2 from the other: if you have only one item from one of the connections then
-you must have 3 items from the other and that will be "one away".
+out, though. If it says neither "correct" nor "one away" then at most two of the items belong to the
+same connection.
 
 John's question then is this. Suppose you have determined 2 of the 4 connections, so you have
 eliminated 8 of the 16 items. But you have no clue as to what the remaining connections are. Is
@@ -32,8 +31,13 @@ equivalent to EFGH, since if ABCD is a connection then EFGH must be the remainin
 doesn't matter which order we guess them in. So we can assume that the connection we are looking for
 contains A. Every solution will contain A in one or the other of its connections.
 
+Similarly, *guessing* ABCD is equivalent to guessing EFGH. "One away" now means that either 2 of BCD
+belong in a connection with A, or none of them does. If none of BCD belongs then 3 of EFGH must form
+a connection with A, so we are still one away. If the game says nothing, then exactly one of BCD
+belongs in a connection with A, and we can call that "two away".
+
 The total number of possible connections containing A is the total number of ways to choose the 3
-remaining items in the set out of the 7 possible items BCDEFGH, which is 7C5 = 35. We could
+remaining items in the set out of the 7 possible items BCDEFGH, which is 7C3 = 35. We could
 obviously swap around these items in any way without changing the problem, so an initial guess of
 ABCD is as good as any other. So let's assume that initial guess. It divides the 35 possible
 connections like this:
@@ -72,11 +76,11 @@ is ABCG or it isn't; it doesn't matter if a guess is one away or not now.
 The above looks at just one chain of guesses. But what we actually want to do at each point is
 consider *every* possible guess and determine which one produces the most solutions. When
 we have a set of _n_ possible connections, it seems the best we can do is to guess something that
-will split those connections into one correct one plus one-away and two-away sets that are about the
-same size. We saw that actually the initial one-away and two-away sets have sizes 16 and 18, and
+will split those connections into one correct item plus one-away and two-away sets that are about
+the same size. We saw that actually the initial one-away and two-away sets have sizes 16 and 18, and
 since all initial guesses are equivalent that is the best we can do. That incidentally gives us
-another way to answer the initial question: are 4 guesses enough? The answer is no, because at
-best each guess splits the remaining possibilities evenly, so we would have:
+another way to answer the initial question: are 4 guesses enough? The answer is no, because at best
+each guess splits the remaining possibilities evenly, so we would have:
 
 | guess | connections | split       |
 | ----: | ----------: | :---------- |
@@ -89,21 +93,21 @@ best each guess splits the remaining possibilities evenly, so we would have:
 
 At each point we assume that we were able to guess one of the currently-possible connections and
 that the remaining connections were split as evenly as possible. Then at the next step we assume we
-start with one of the splits, the larger one if they were not the same size. We can see that 4
-guesses are indeed not enough, and 5 aren't either, but 6 are.
+start with one of the splits, the larger one if they were not the same size. This is a lower bound
+on the actual number of guesses needed. We can see that 4 guesses are indeed not enough, and 5
+aren't either, but 6 are.
 
 ## How many connections can we expect to find?
 
 An ideal strategy will find one connection at each guess and then split the remaining possible
 connections into 2 non-empty sets for one-away and two-away.
 
-The games allows us 4 guesses. We can count the number of connections using this ideal strategy by
-working backwards. At the 4th guess we will find 1 connection. At the third guess we will find 1
-connection plus 1 more for each of the 2 sets we can try for the 4th guess, for a total of 3.
-At the second guess we will find one connection plus 3 more for each of the 2 sets, for a total of
-7. At the first guess we will find one connection plus 7 more for each of the 2 sets, for a total
-of 15. So *at best* we can find 15 connections. And in fact we *can* achieve that. The diagram in
-[John's
+The game allows us 4 guesses. We can count the number of connections using this ideal strategy by
+working backwards. At the 4th guess we will find 1 connection. At the 3rd guess we will find 1
+connection plus 1 more for each of the 2 sets we can try for the 4th guess, for a total of 3. At
+the 2nd guess we will find one connection plus 3 more for each of the 2 sets, for a total of 7. At
+the 1st guess we will find one connection plus 7 more for each of the 2 sets, for a total of 15. So
+*at best* we can find 15 connections. And in fact we *can* achieve that. The diagram in [John's
 document](https://docs.google.com/document/d/1-Yq24GkJM4KwVuM0WSk85fZEpKLdXX99ZjxP1Eh3mFQ/edit?usp=sharing)
 shows one way of doing it: there are 15 boxes in the diagram and in each one we can guess the
 highlighted word, or any word if none is highlighted.
@@ -137,7 +141,7 @@ this:
 | two-away | {ABFG,ACEG,ADEF} |
 
 The one-away set is empty, meaning that we will never get that answer for any of the connections in
-the set.  We only have the two-away set, and we are in the same situation again: our set is
+the set. We only have the two-away set, and we are in the same situation again: our set is
 {ABFG,ACEG,ADEF} and no matter which connection we guess, we will score that connection but then be
 left with the other 2 in the two-away set. We can guess one, and if the solution is the other one we
 lose. In total this method has found 3 of the 4 original connections.
@@ -154,6 +158,6 @@ outcome is this:
 Now we can use our 2 remaining guesses to guess each of the 2 possible connections on the one-away
 branch and on the two-away branch. So this method will find all 4 of the 4 original connections.
 
-With 4 guesses, it doesn't matter whether we limit each guess to a possible connection. We can find
-15 connections either way. But with 5 guesses, it does matter: we can only find 26 connections
+With 4 guesses, it doesn't matter whether we require each guess to be a possible connection. We can
+find 15 connections either way. But with 5 guesses, it does matter: we can only find 26 connections
 instead of 28. And even with 6 guesses, we can only find 33 of the 35.
