@@ -39,7 +39,7 @@ a connection with A, so we are still one away. If the game says nothing, then ex
 belongs in a connection with A, and we can call that "two away".
 
 The total number of possible connections containing A is the total number of ways to choose the 3
-remaining items in the set out of the 7 possible items BCDEFGH, which is 7C3 = 35. We could
+remaining items in the connection out of the 7 possible items BCDEFGH, which is 7C3 = 35. We could
 obviously swap around these items in any way without changing the problem, so an initial guess of
 ABCD is as good as any other. So let's assume that initial guess. It divides the 35 possible
 connections like this:
@@ -95,8 +95,9 @@ each guess splits the remaining possibilities evenly, so we would have:
 
 At each point we assume that we were able to guess one of the currently-possible connections and
 that the remaining connections were split as evenly as possible. Then at the next step we assume we
-start with one of the splits, the larger one if they were not the same size. This is a lower bound
-on the actual number of guesses needed. We can see that 4 guesses are indeed not enough, and 5
+start with one of the splits, the larger one if they were not the same size. Until we are starting
+with only one possibility, we have not succeeded in finding everything. That establishes a lower
+bound on the actual number of guesses needed. We can see that 4 guesses are indeed not enough, and 5
 aren't either, but 6 are.
 
 ## How many connections can we expect to find?
