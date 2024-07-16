@@ -24,6 +24,8 @@ possible ways in which the 8 remaining items can be split into connections. With
 how many of those ways can we expect to guess correctly with 4 guesses in total? How many guesses
 would we need in order to be sure of finding the connections?
 
+![Connections game with first two rows solved and remaining items ABCDEFGH](docs/connections-2024-07-15-abcd.png)
+
 ## Analysis
 
 Following John's lead, let's call the 8 items ABCDEFGH. Then a connection is for example ABCD. It is
