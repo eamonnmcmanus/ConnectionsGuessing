@@ -4,9 +4,9 @@ This project addresses a question raised by [John Olson](https://www.facebook.co
 and studied by him in [this document](https://docs.google.com/document/d/1-Yq24GkJM4KwVuM0WSk85fZEpKLdXX99ZjxP1Eh3mFQ/edit?usp=sharing).
 
 The [Connections](https://www.nytimes.com/games/connections) game in the New York Times presents a
-grid of 16 items, where the goal is to divide the items into 4 sets, where the items in each set
-are connected in some way. So for example a set might be {MELT, VAPORIZE, CONDENSE, FREEZE}, where
-the connection is that they are changes from one state of matter to another. (This game is clearly
+grid of 16 items. The goal is to divide the items into 4 sets, where the items in each set
+are connected in some way. So for example a set might be {MELT, VAPORIZE, CONDENSE, FREEZE}, with
+the connection being that they are changes from one state of matter to another. (This game is clearly
 inspired by the Connecting Wall from the [Only Connect](https://en.wikipedia.org/wiki/Only_Connect)
 quiz show on the BBC.)
 
@@ -34,9 +34,9 @@ doesn't matter which order we guess them in. So we can assume that the connectio
 contains A. Every solution will contain A in one or the other of its connections.
 
 Similarly, *guessing* ABCD is equivalent to guessing EFGH. "One away" now means that either 2 of BCD
-belong in a connection with A, or none of them does. If none of BCD belongs then 3 of EFGH must form
-a connection with A, so we are still one away. If the game says nothing, then exactly one of BCD
-belongs in a connection with A, and we can call that "two away".
+belong in a connection with A, or none of them does. If none of BCD belongs with A then all 3 of them
+belong to the other connection, so we are still one away, with A being the odd one out. If the game
+says nothing, then exactly one of BCD belongs in a connection with A, and we can call that "two away".
 
 The total number of possible connections containing A is the total number of ways to choose the 3
 remaining items in the connection out of the 7 possible items BCDEFGH, which is 7C3 = 35. We could
